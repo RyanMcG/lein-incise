@@ -1,14 +1,15 @@
 (ns leiningen.incise
-  (:require [leiningen.core.eval :refer [eval-in-project]]))
+  (:require (leiningen.core [eval :refer [eval-in-project]]
+                            [project :refer [merge-profiles]])))
+
+(def default-profile {:dependencies [['incise "0.1.0-SNAPSHOT"]]})
 
 (defn ^:no-project-needed incise
   "Call incise's main method and execute it in the scope of the project if it
   exists."
   [project & args]
-  (if (:root project)
-    (eval-in-project project
+  (let [profile (or (get-in project [:profiles :incise])
+                    default-profile)]
+    (eval-in-project (merge-profiles project [profile])
                      `(incise.core/-main ~@args)
-                     '(require 'incise.core))
-    (do
-      (require 'incise.core)
-      (apply incise.core/-main args))))
+                     '(require 'incise.core))))
