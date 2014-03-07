@@ -1,4 +1,4 @@
-(defproject lein-incise "0.2.0"
+(defproject lein-incise "0.2.1"
   :description "A leiningen plugin for the incise static site generator."
   :url "https://github.com/RyanMcG/lein-incise"
   :license {:name "Eclipse Public License"
