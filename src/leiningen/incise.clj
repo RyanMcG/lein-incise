@@ -2,7 +2,7 @@
   (:require (leiningen.core [eval :refer [eval-in-project]]
                             [project :refer [merge-profiles]])))
 
-(def default-profile {:dependencies [['incise "0.1.0"]]})
+(def default-profile {:dependencies [['incise "0.2.0"]]})
 
 (defn ^{:no-project-needed true
         :help-arglists []}
